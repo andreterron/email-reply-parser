@@ -1,5 +1,6 @@
 var fs 			     = require("fs");
 var _  				 = require("underscore");
+var RE2 			 = require("re2");
 var EmailReplyParser = require("../lib/emailreplyparser");
 
 const COMMON_FIRST_FRAGMENT = 'Fusce bibendum, quam hendrerit sagittis tempor, dui turpis tempus erat, pharetra sodales ante sem sit amet metus.\n\
@@ -11,7 +12,7 @@ et mollis ligula rutrum quis. Fusce sed odio id arcu varius aliquet nec nec nibh
 function get_email(name) {
 	var data = fs.readFileSync(__dirname + "/fixtures/" + name + ".txt", "utf-8");
 
-	return new EmailReplyParser().read(data);
+	return new EmailReplyParser(RE2).read(data);
 }
 
 function get_raw_email(name) {
